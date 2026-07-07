@@ -271,7 +271,7 @@ async def group_handler(message: types.Message):
             await bot.send_message(chat_id=ORDER_GROUP_ID, text=order_text, reply_markup=keyboard)
             await message.delete()
             
-            reply_text = f"✅ {first_name}, siz bilan tez orada haydovchilarimiz bog'lanadi!"
+            reply_text = f"✅ {first_name}, buyurtmangiz qabul qilindi. Siz bilan tez orada haydovchilarimiz bog'lanadi!"
             sent_reply = await message.answer(reply_text)
             asyncio.create_task(delete_message_later(chat_id, sent_reply.message_id, 10))
             
