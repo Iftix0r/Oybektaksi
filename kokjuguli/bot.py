@@ -202,7 +202,12 @@ async def private_order_handler(message: types.Message):
             await bot.send_message(chat_id=ADMIN_ID, text=order_text, reply_markup=keyboard)
             
         reply_text = "✅ <b>Zakazingiz qabul qilindi!</b>\n\nTez orada haydovchilarimiz siz bilan bog'lanadi. 🚗"
-        await message.answer(reply_text)
+        
+        admin_btn = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="👨‍💻 Admin bilan bog'lanish", url="https://t.me/FARSAJ_6363")]
+        ])
+        
+        await message.answer(reply_text, reply_markup=admin_btn)
     except Exception as e:
         await message.answer("❌ Uzr, xatolik yuz berdi. Iltimos qayta urinib ko'ring.")
 
@@ -272,7 +277,12 @@ async def group_handler(message: types.Message):
             await message.delete()
             
             reply_text = f"✅ {first_name}, buyurtmangiz qabul qilindi. Siz bilan tez orada haydovchilarimiz bog'lanadi!"
-            sent_reply = await message.answer(reply_text)
+            
+            admin_btn = InlineKeyboardMarkup(inline_keyboard=[
+                [InlineKeyboardButton(text="👨‍💻 Admin bilan bog'lanish", url="https://t.me/FARSAJ_6363")]
+            ])
+            
+            sent_reply = await message.answer(reply_text, reply_markup=admin_btn)
             asyncio.create_task(delete_message_later(chat_id, sent_reply.message_id, 10))
             
         except Exception:
