@@ -248,8 +248,13 @@ async def group_handler(message: types.Message):
             pass
             
         ad_text = "⚠️ <b>Reklama berib ishlashmoqchi bo'lsangiz @FARSAJ_6363 bilan bog'laning!</b>"
+        
+        admin_btn = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="👨‍💻 Admin bilan bog'lanish", url="https://t.me/FARSAJ_6363")]
+        ])
+        
         try:
-            sent_msg = await message.answer(ad_text)
+            sent_msg = await message.answer(ad_text, reply_markup=admin_btn)
             asyncio.create_task(delete_message_later(chat_id, sent_msg.message_id, 10))
         except TelegramAPIError:
             pass
