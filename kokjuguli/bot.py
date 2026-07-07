@@ -211,6 +211,14 @@ async def private_order_handler(message: types.Message):
     except Exception as e:
         await message.answer("❌ Uzr, xatolik yuz berdi. Iltimos qayta urinib ko'ring.")
 
+# GURUHLAR: Kirdi-chiqdi (service) xabarlarini o'chirish
+@dp.message(F.new_chat_members | F.left_chat_member)
+async def delete_join_left_messages(message: types.Message):
+    try:
+        await message.delete()
+    except Exception:
+        pass
+
 # GURUHLAR: Zakaz qabul qilish
 @dp.message(F.chat.type.in_({"group", "supergroup"}))
 async def group_handler(message: types.Message):
